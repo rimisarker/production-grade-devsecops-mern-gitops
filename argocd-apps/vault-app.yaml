@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hashicorp-vault
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: vault
+    repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 0.28.0
+    helm:
+      values: |
+        server:
+          dev:
+            enabled: true # Uses Dev mode for easier initialization; adjust for production HA mode
+          ui:
+            enabled: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vault
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
