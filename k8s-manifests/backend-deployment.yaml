@@ -33,7 +33,7 @@ spec:
         
       containers:
       - name: backend-app
-        image: rimisarker/mern-backend:prod-4
+        image: rimisarker/mern-backend:prod-5
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
