@@ -20,7 +20,7 @@ spec:
       
       containers:
       - name: frontend-app
-        image: rimisarker/mern-frontend:prod-3
+        image: rimisarker/mern-frontend:prod-4
         imagePullPolicy: Always
         ports:
         - containerPort: 80
