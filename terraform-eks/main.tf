@@ -1,4 +1,4 @@
-# 1. VPC and Networking (Using standard AWS VPC module or your custom configuration)
+# 1. VPC and Networking
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.0"
@@ -27,6 +27,10 @@ module "eks" {
 
   enable_cluster_creator_admin_permissions = true
 
+  # Public access enable করা হয়েছে যাতে Terraform/Local machine থেকে Helm রিলিজ স্মুথলি ইনস্টল হতে পারে
+  cluster_endpoint_public_access  = true
+  cluster_endpoint_private_access = true
+
   eks_managed_node_groups = {
     general = {
       instance_types = ["t3.medium"]
@@ -37,7 +41,7 @@ module "eks" {
   }
 }
 
-# 3. ArgoCD Installation via Helm (Ensures it installs ONLY after EKS and nodes are fully active)
+# 3. ArgoCD Installation via Helm
 resource "helm_release" "argocd" {
   name             = "argocd"
   repository       = "https://argoproj.github.io/argo-helm"

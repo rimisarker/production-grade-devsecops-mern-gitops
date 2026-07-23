@@ -1,7 +1,7 @@
 variable "aws_region" {
   type        = string
   description = "AWS Region for infrastructure provisioning"
-  default     = "us-west-2"  # Oregon Region
+  default     = "us-west-2"
 }
 
 variable "cluster_name" {

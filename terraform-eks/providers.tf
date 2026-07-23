@@ -20,7 +20,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Configure Helm and Kubernetes providers dynamically using the created EKS cluster details
 provider "helm" {
   kubernetes {
     host                   = module.eks.cluster_endpoint
