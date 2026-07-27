@@ -1,13 +1,3 @@
-# MERN Stack GitOps & DevSecOps Deployment on AWS EKS
-
-An end-to-end hands-on guide for deploying a production-grade MERN (MongoDB, Express, React, Node.js) stack on AWS EKS using Infrastructure as Code (IaC) with **Terraform**, Continuous Delivery with **ArgoCD (GitOps)**, Secret Management with **HashiCorp Vault & External Secrets Operator (ESO)**, Ingress Routing with **NGINX Ingress Controller**, and Monitoring with **Prometheus & Grafana**.
-
----
-
-## Project Demo Video
-  [**Watch Full Project Demo Video on LinkedIn**](https://www.linkedin.com)
-
----
 
 ## 🏗️ System Architecture
 
@@ -42,9 +32,9 @@ graph TD
         end
 
     end
-    ```
+``` 
 
-Key Technical Highlights
+### Key Technical Highlights
 1.Infrastructure as Code (IaC): Modular Terraform code provisioning EKS, VPC, Subnets, EBS CSI Driver, and Helm releases automatically.
 
 2.GitOps Continuous Delivery: Zero-downtime cluster state synchronization using ArgoCD.
