@@ -170,6 +170,8 @@ kubectl create secret generic vault-token \
   --from-literal=token="root" \
   -n default
 
+**Production Note:** In this lab environment, a `root` token is used for seamless execution. For production environments, it is recommended to replace root tokens with **Kubernetes Auth Method** or **AppRole Auth Engine** enforced by fine-grained Vault policies.
+
 4.Deploy External Secrets Operator (ESO):
 
 kubectl apply -f argocd-apps/external-secrets-app.yaml
