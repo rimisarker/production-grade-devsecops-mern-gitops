@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-frontend
+  labels:
+    app: mern-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mern-frontend
+  template:
+    metadata:
+      labels:
+        app: mern-frontend
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101 # Default non-root user ID for Nginx
+      containers:
+      - name: frontend-app
+        image: rimisarker/mern-frontend:prod-5
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false 
+          capabilities:
+            drop:
+            - ALL
+        env:
+        # Note: Set this to your public Ingress/LoadBalancer URL when serving external browser traffic
+        - name: REACT_APP_BACKEND_URL
+          value: "http://mern-backend-service:5000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mern-frontend-service
+  labels:
+    app: mern-frontend
+spec:
+  type: ClusterIP # sss
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: mern-frontend

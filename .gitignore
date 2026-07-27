@@ -1,0 +1,39 @@
+# --- Terraform ---
+# Local directory for modules
+.terraform/
+
+# Locked files (Sometimes ignored if not using shared module sources, but usually kept. Keep it commented out if you want to track .terraform.lock.hcl)
+# .terraform.lock.hcl
+
+# Configuration file for terraform UI/CLI
+.terraformrc
+terraform.rc
+
+# State files
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform generated output/evaluation files
+.tfstate.backup
+
+# --- IDEs and Text Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# --- Kubernetes / Helm / Secrets ---
+# Local kubeconfig files or secret overrides
+kubeconfig*
+secrets.yaml
+values-override.yaml
