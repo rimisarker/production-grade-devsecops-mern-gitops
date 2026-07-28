@@ -158,17 +158,17 @@ kubectl get pods -n vault -w
 kubectl exec -it hashicorp-vault-0 -n vault -- sh
 
 # Enable KV-v2 Engine & Store Secrets
-vault secrets enable -path=secret kv-v2 || true
+
 vault kv put secret/mongodb MONGO_USER="rootadmin" MONGO_PASS="SuperSecret123!"
+
+vault kv get secret/mongodb
 
 # Exit pod
 exit
 
 3.Pass Vault Token to Kubernetes Secret:
 
-kubectl create secret generic vault-token \
-  --from-literal=token="root" \
-  -n default
+kubectl create secret generic vault-token --from-literal=token="root" -n default
 
 **Production Note:** In this lab environment, a `root` token is used for seamless execution. For production environments, it is recommended to replace root tokens with **Kubernetes Auth Method** or **AppRole Auth Engine** enforced by fine-grained Vault policies.
 
@@ -177,14 +177,15 @@ kubectl create secret generic vault-token \
 kubectl apply -f argocd-apps/external-secrets-app.yaml
 
 
-6. Step 5: Deploying MERN Stack & Monitoring Apps
+6.Step 5: Deploying MERN Stack & Monitoring Apps
 Apply all ArgoCD Application Wrappers to start automated synchronization:
 
 kubectl apply -f argocd-apps/
 
 ArgoCD will continuously sync this repository and automatically deploy workloads into monitoring and default namespaces.
 
-7. Step 6: How to Access Application & Admin Dashboards
+7.Step 6: How to Access Application & Admin Dashboards
+
 🌐 1. Public MERN Application (AWS Load Balancer)
 Retrieve your AWS Network Load Balancer (NLB) external DNS name:
 
